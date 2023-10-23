@@ -1,0 +1,178 @@
+// *{
+//     margin: 0;
+//     padding: 0;
+//     box-sizing: border-box;
+//     list-style: none;
+//     text-decoration: none;
+//     font-family: 'Josefin Sans', sans-serif;
+//   }
+
+body {
+  background-color: #f3f5f9;
+}
+
+a {
+  padding-left: 5px;
+}
+
+.header {
+  padding: 10px;
+  background: #a0e6fc;
+  color: #717171;
+  border-bottom: 1px solid #e0e4e8;
+  font-size: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header_content {
+  color: #313033;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 2.66667px 466.021px 2.66667px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.exit {
+  margin-left: auto;
+  color: #fff;
+  text-decoration: none;
+}
+
+.container {
+  color: #313033;
+  font-size: 12px;
+  padding: 32px;
+}
+
+.count_lesson {
+  align-items: center;
+  background-color: #ebebeb;
+  display: flex;
+  font-size: 12px;
+  justify-content: flex-start;
+  padding: 0px 0px 20px
+}
+
+.content_lesson {
+  align-items: stretch;
+  color: #313033;
+  display: flex;
+  font-size: 12px;
+  justify-content: flex-start;
+  padding: 0px 0px 20px
+}
+
+.video_voca {
+  color: #313033;
+  display: grid;
+  font-size: 12px;
+  gap: 48px;
+  grid-template-areas: "video info";
+  grid-template-columns: 280px 280px;
+  grid-template-rows: 313.781px;
+}
+
+
+video {
+  border-radius: 16px;
+  color: #313033;
+  display: inline;
+  font-size: 12px;
+  width: 30%
+}
+
+label {
+  color:
+    #8e94a0;
+
+  font-size:
+    12px;
+  font-weight:
+    600;
+  margin:
+    8px 0px;
+  text-transform:
+    uppercase
+}
+
+h2 {
+  color:
+    #313033;
+  font-size:
+    36px;
+  font-weight:
+    600;
+  line-height:
+    43.2px
+}
+
+span {
+  color:
+    #313033;
+  font-size:
+    36px;
+  font-weight:
+    600;
+  line-height:
+    43.2px
+}
+
+.eng {
+  color:
+    #313033;
+  font-size:
+    14px
+}
+
+.container-eng {
+  padding-left: 100px;
+}
+
+.vocabulary {
+  font-size: 40px;
+  display: flex;
+}
+
+.continue {
+  margin-left: 500px;
+}
+
+.vie {
+  color: #8e94a0;
+  padding-top: 10px;
+}
+
+.mean {
+  padding-top: 5px;
+  font-size: 20px;
+}
+
+.sound {
+  display: inline-block;
+}
+
+span {
+  font-size: 16px;
+}
+
+a {
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #313033;
+}
+
+.noun {
+  color: #717171;
+}
+
+.video_source {
+  display: flex;
+  position: absolute;
+  float: inline-end;
+}
