@@ -32,10 +32,8 @@ function App() {
         <Route path='/topic' element={<Topic />}></Route>
         <Route path='/modaltopic' element={<ModalTopic />}></Route>
         <Route path='/detailtopic' element={<DetailTopic />}></Route>
-
-
         <Route path='/listvideo' element={<ListVideo />}></Route>
-
+      
       </Routes>
     </BrowserRouter>
     </>

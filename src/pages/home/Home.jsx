@@ -20,11 +20,11 @@ function Home(props) {
                 <div className="col-md-4 col-sm-4 col-lg-4 content__home" id="content2">
                     <div className="container">
                         <div className="row">
-                            <p className="  process-learn ">Tiến độ học trong tháng của bạn</p>
+                            <p className="process-learn" style={{marginBottom:"5px"}}>Tiến độ học trong tháng của bạn</p>
                             <div className="content__home--middle col-3">
                                 <div className="content__home--middle--top">
                                     <img src="/assets/icon/iconbook.svg" />
-                                    <p>Từ đã học</p>
+                                    <p >Từ đã học</p>
                                 </div>
                                 <div className="content__home--middle--bottom">
                                     <p>0</p>
@@ -42,7 +42,7 @@ function Home(props) {
                             <div className="content__home--middle col-3">
                                 <div className="content__home--middle--top">
                                     <img src="/assets/icon/iconchat.svg" />
-                                    <p>hội thoại đã hoàn thành</p>
+                                    <p>Hội thoại đã hoàn thành</p>
                                 </div>
                                 <div className="content__home--middle--bottom">
                                     <p>0</p>
