@@ -18,7 +18,7 @@ function Introduction() {
                     <li><a href="#">Contact us</a></li>
                 </ul>
             </nav>
-            <div className="content">
+            <div className="content-fix">
                 <h1>Let's Learn English</h1>
                 <a href="/login">Start</a>
             </div>

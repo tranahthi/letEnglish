@@ -33,11 +33,11 @@ function ListVideo() {
                             <span>All chanels</span>
                         </div>
                         <div className="content__video--middle--right">
-                            <button >
-                                <img src="/assets/icon/iconprev.svg" alt="" />
+                            <button className="img-fix">
+                                <img src="/assets/icon/prev.svg" alt="" />
                             </button>
-                            <button >
-                                <img src="/assets/icon/iconnext.svg" alt="" />
+                            <button className="img-fix" >
+                                <img src="/assets/icon/next.svg" alt="" />
                             </button>
                         </div>
                     </div>
@@ -88,11 +88,11 @@ function ListVideo() {
                         <div className="content__video--middle--right">
 
                             <button className="btn-all"><a href="/detailvideo">All</a></button>
-                            <button >
-                                <img src="/assets/icon/iconprev.svg" alt="" />
+                            <button className="img-fix" >
+                                <img src="/assets/icon/prev.svg" alt="" />
                             </button>
-                            <button >
-                                <img style={{ width: "18px", height: "18px" }} src="/assets/icon/iconnext.svg" alt="" />
+                            <button className="img-fix" >
+                                <img src="/assets/icon/next.svg" alt="" />
                             </button>
                         </div>
                     </div>
@@ -187,11 +187,11 @@ function ListVideo() {
                         <div className="content__video--middle--right">
 
                             <button className="btn-all">All</button>
-                            <button >
-                                <img src="/assets/icon/iconprev.svg" alt="" />
+                            <button className="img-fix">
+                                <img  src="/assets/icon/prev.svg" alt="" />
                             </button>
-                            <button >
-                                <img style={{ width: "18px", height: "18px" }} src="/assets/icon/iconnext.svg" alt="" />
+                            <button className="img-fix" >
+                                <img  src="/assets/icon/next.svg" alt="" />
                             </button>
                         </div>
                     </div>
@@ -282,11 +282,11 @@ function ListVideo() {
                         <div className="content__video--middle--right">
 
                             <button className="btn-all">All</button>
-                            <button >
-                                <img src="/assets/icon/iconprev.svg" alt="" />
+                            <button className="img-fix" >
+                                <img  src="/assets/icon/prev.svg" alt="" />
                             </button>
-                            <button >
-                                <img style={{ width: "18px", height: "18px" }} src="/assets/icon/iconnext.svg" alt="" />
+                            <button className="img-fix">
+                                <img src="/assets/icon/next.svg" alt="" />
                             </button>
                         </div>
                     </div>
