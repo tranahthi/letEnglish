@@ -10,6 +10,7 @@ import ForgetPassword from './pages/forgetpass/ForgetPass';
 import Topic from './pages/topic/Topic';
 import ModalTopic from './pages/modaltopic/ModalTopic';
 import DetailTopic from './pages/detailtopic/DetailTopic';
+import VideoDetail from './pages/videodetail/VideoDetail';
 
 
 
@@ -33,6 +34,8 @@ function App() {
         <Route path='/modaltopic' element={<ModalTopic />}></Route>
         <Route path='/detailtopic' element={<DetailTopic />}></Route>
         <Route path='/listvideo' element={<ListVideo />}></Route>
+        
+        <Route path='/videodetail' element={<VideoDetail />}></Route>
       
       </Routes>
     </BrowserRouter>
