@@ -1,6 +1,8 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 
+import "./videodetail.scss"
+import VideoReact from "./VideoReact"
 
 
 
@@ -8,34 +10,23 @@ import { useEffect, useState } from "react"
 function VideoDetail() {
 
 
-    const [getVideo, setVideo] = useState([])
 
-
-    useEffect(() => {
-        axios.get("http://192.168.110.213:8081/chanel/list")
-            .then(res => {
-                console.log(res)
-                setVideo(res.data)
-
-            })
-            .catch(error => console.log(error))
-    }, [])
-
-    function renderData() {
-        if (Array.isArray(getVideo) && getVideo.length > 0) {
-            return getVideo.map((value, index) => (
-                <div key={value.id}>
-                    <video controls>
-                        <source src={value.video[index]} />
-                    </video>
-                </div>
-            ))
-        }
-    }
 
     return (
-        <div style={{ marginTop: "100px" }}>
-            {renderData()}
+        <div className="container" id="videodetail">
+
+            <div className="row">
+                <div className="content__detail--left col-sm-8" >
+                    <VideoReact />
+                </div>
+
+                <div className="content__detail--right col-sm-4 ">
+                    <div>
+                        abc
+                    </div>
+                </div>
+            </div>
+
         </div>
     )
 

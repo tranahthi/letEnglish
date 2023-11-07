@@ -4,7 +4,7 @@ function Signup() {
     return (
         <div className="body_authen">
         <div className="center">
-            <h1>Sign up</h1>
+            <h1>Register</h1>
             <form method="post">
                 <div class="txt-field">
                     <input type="text" required/>
@@ -27,7 +27,7 @@ function Signup() {
                 <div class="pass">Forget Password?</div>
                 <input type="submit" value="Sign up" />
                 <div class="signup_link">
-                    Have a account? <a href="#">Sign in</a>
+                    Have a account? <a href="/login">Login</a>
                 </div>
             </form>
         </div>

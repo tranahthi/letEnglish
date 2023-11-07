@@ -10,7 +10,9 @@ function ListChanelDetail() {
 
 
         useEffect(() =>{
-            axios.get("http://192.168.110.213:8081/chanel/list")
+
+            axios.get("http://172.20.10.8:8081/chanel/list/")
+
             .then(res =>{
                 console.log(res)
                 setVideoChanel(res.data)
