@@ -1,19 +1,25 @@
 .topic {
   margin-top: 100px;
 
+
+
+
   .btn-group {
     .btn-primary {
       font-size: 20px;
-      background-color: grey;
-      border-color: white;
-      border-radius: 12px;
+      border: 1px solid red;
+      border-radius: 20px;
+    }
+
+    button {
+      margin-right: 10px;
     }
 
   }
 
   .main_content {
 
-  
+
     .continue-learning {
       margin-top: 20px;
 
@@ -31,7 +37,7 @@
       margin-right: 20px;
       margin-top: 20px;
       cursor: pointer;
-      
+
 
       .card-body {
         padding: 0;
@@ -40,14 +46,26 @@
 
     .topic-list {
       margin-top: 20px;
-      .topic-item{
+
+      .topic-item {
         margin-top: 20px;
       }
     }
 
-    
+
   }
 
 }
 
+.lesson-name {
+  text-align: center;
+  color: #69B4F9;
+}
 
+.modal-name-topic .modal-title h4 {
+  color: #69B4F9;
+}
+
+.list-voca{
+  margin-left: 60px;
+}

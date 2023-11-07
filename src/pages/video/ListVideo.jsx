@@ -1,6 +1,7 @@
 
 import "./ListVideo.scss"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom";
 import axios from "axios"
 import ListChanel from "../../feature/listchanel/ListChanel";
 
@@ -10,13 +11,14 @@ function ListVideo() {
 
     const [isActive, setIsActive] = useState(false);
     const [getVideoChanel, setVideoChanel] = useState([])
+    console.log(getVideoChanel)
 
 
     const handleButtonClick = (buttonIndex) => {
         setIsActive(buttonIndex); // Khi nút được bấm, đảo ngược trạng thái "active"
     };
     useEffect(() => {
-        axios.get("http://172.16.0.2:8081/chanel/list")
+        axios.get(`http://172.20.10.8:8081/chanel/list/`)
             .then(res => {
                 console.log(res)
                 setVideoChanel(res.data)
@@ -60,14 +62,15 @@ function ListVideo() {
                     {<ListChanel />}
 
                     {/* chanels 1 */}
-                    {getVideoChanel.map(channel => (
+                    {getVideoChanel.map((channel,index) => (
                         <div key={channel.id} className="content__video--middle--middle">
                             <div className="content__video--middle-fix" style={{ display: "flex", justifyContent: "space-between" }}>
                                 <div className="content__video--middle--left">
                                     <span>{channel.chude}</span>
                                 </div>
                                 <div className="content__video--middle--right">
-                                    <button className="btn-all"><a href="/detailvideo">All</a></button>
+
+                                    <button className="btn-all"><Link to={`/chanel/list/detail/${channel.id}`}>All</Link></button>
                                     <button className="img-fix">
                                         <img src="/assets/icon/prev.svg" alt="" />
                                     </button>
@@ -76,25 +79,27 @@ function ListVideo() {
                                     </button>
                                 </div>
                             </div>
-                            {getVideoChanel.map((channel, index) => (
-                                <div style={{display:"flex"}}>
-                                    <div key={index} className="content__video--middle--content">
+                            <div className="display-fix" >
+                                {channel.imagevideo.map((image, imageId) => (
+                                    <div key={imageId} className="content__video--middle--content">
                                         <div className="container-content">
                                             <div className="content-img">
-                                                <img src={channel.imagevideo[index]} alt="" />
+                                                <img src={image} alt="" />
                                             </div>
                                             <div className="content-title">
-                                                <a href="/videodetail">{channel.namevideo[index]}</a>
+                                                {console.log(channel.idvideo)}
+                                                {/* <a href="/videodetail/">{channel.namevideo[imageId]}</a> */}
+                                                <Link to={"/chanel/list/" + channel.idvideo[index]}>{channel.namevideo[imageId]}</Link>
                                                 <hr className="line"></hr>
                                                 <div className="view-count">
                                                     <img src="/assets/icon/iconlisten.svg" alt="" />
-                                                    <span>{channel.numhumanwatched[index]}</span>
+                                                    <span>{channel.numhumanwatched[imageId]}</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     ))}
 

@@ -30,7 +30,7 @@ function Header() {
                                         <a className="nav-link " aria-current="page" href="/listvideo">Video</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link " aria-current="page" href="#">Communicate</a>
+                                        <a className="nav-link " aria-current="page" href="http://172.20.10.8/:8081/crud/example">Communicate</a>
                                     </li>
                                 </div>
                                 <div className="nav-rigth">
