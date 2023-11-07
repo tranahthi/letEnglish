@@ -57,7 +57,9 @@
             .content__video--middle--top {
 
                 display: flex;
+
                 // flex-direction: column;
+
                 margin-top: 50px;
                 justify-content: space-between;
 
@@ -142,6 +144,13 @@
 
                     .img-fix {
                         img {
+                            width: 18px;
+                            height: 18px;
+                        }
+                    }
+
+                    .img-fix {
+                        img{
                             width: 18px;
                             height: 18px;
                         }
@@ -261,6 +270,8 @@
 
                         a {
                             // overflow: hidden;
+
+
 
                             text-decoration: none;
                             color: #000000;

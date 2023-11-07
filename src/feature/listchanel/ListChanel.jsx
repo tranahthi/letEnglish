@@ -5,7 +5,9 @@ function ListChanel() {
     const [getChanel, setChanel] = useState([]);
 
     useEffect(() => {
+
         axios.get("http://172.20.10.8:8081/chanel/all/")
+
             .then(res => {
                 console.log(res);
                 setChanel(res.data);

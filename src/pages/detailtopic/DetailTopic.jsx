@@ -30,6 +30,7 @@ function DetailTopic() {
 
     return (
         <div className="container">
+
             <div className="container_detail-topic">
                 {/* ... */}
                 <div className="detail-topic-content">
@@ -56,6 +57,14 @@ function DetailTopic() {
                     </Link>
                 </div>
             </div>
+
+            
+
+            
+
+            
+
+       
         </div>
     );
 }

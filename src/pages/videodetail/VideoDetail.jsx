@@ -6,7 +6,9 @@ import VideoReact from "./VideoReact"
 
 
 
+
 function VideoDetail() {
+
 
 
 
@@ -24,6 +26,7 @@ function VideoDetail() {
                     </div>
                 </div>
             </div>
+
         </div>
     )
 
