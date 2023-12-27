@@ -1,0 +1,28 @@
+
+
+
+.comment-box {
+    margin-top: 50px;
+    width: 740px;
+
+
+    
+    .tag-conversation{
+        span{
+            font-size: 15px;
+        }
+    }
+    .box{
+        display: flex;
+
+        img{
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+    }
+    .btn{
+        margin-left: 55px;
+        background-color: #69B4F9;
+        border: none;
+    }
+}

@@ -1,8 +1,53 @@
 #videodetail{
-    margin-top: 100px;
+    margin-top: 120px;
 //fix untracked
     #video{
         width: 1000px;
         
+    }
+    .content__detail--left {
+        h1{
+            font-size: 32px;
+            font-weight: 500;
+        }
+    }
+    .content__detail--right{
+        h3{
+            font-weight: 700;
+            font-size: 24px;
+            padding-bottom: 10px;
+        }
+
+        .video-remain{
+            padding-top: 20px;
+            display: flex;
+
+            .video-fixx{
+
+                img{
+                    
+                }
+                img:hover{
+                    cursor: pointer;
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                    object-fit:cover;
+                    
+                    transition: width 0.5s ease; /* Add a transition effect on the width property */
+                }
+            }
+            .tag-fix{
+
+                padding-left: 10px;
+                h4{
+                    font-size: 20px;
+                    
+                }
+            }
+        }
+        // .video-remain:hover{
+        //     background-color: rgb(188, 188, 188);
+        //     padding-top: 0;
+        // }
+       
     }
 }

@@ -12,11 +12,7 @@ function Introduction() {
 
             <nav>
                 <img src= "/assets/image/logo4.png" class="logo"alt="" />
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact us</a></li>
-                </ul>
+                
             </nav>
             <div className="content-fix">
                 <h1>Let's Learn English</h1>

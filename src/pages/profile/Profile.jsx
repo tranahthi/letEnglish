@@ -1,16 +1,117 @@
+import AxiosClient from '../../api/AxiosClient';
 import './profile.scss';
 import React, { useState } from 'react';
-
+import { ToastContainer, toast } from "react-toastify";
 
 function Profile() {
     const [activeTab, setActiveTab] = useState('#account-general');
+    const [getInput , setInput] = useState("")
 
+    let userData = localStorage.getItem("userData")
     const handleTabChange = (tabId) => {
         setActiveTab(tabId);
     };
 
+    const [contactEmail, setContactEmail] = useState("");
+    const [otp, setOtp] = useState("");
+    const [isOtpValid, setIsOtpValid] = useState("");
+
+    const [newPassword,setNewPassword] = useState("")
+    const [repeatPassword, setRepeatPassword] = useState("");
+    console.log(otp)
+    
+    const handleSend = async () => {
+       AxiosClient.post(`/api/v1/requestuser?email=${contactEmail}`)
+       .then(res => {
+        console.log(res)
+        setOtp(res.data)
+       })
+       .catch(error => console.log(error))
+    };
+    console.log(isOtpValid)
+    const checkValidOtp =  () =>{
+        if(String(isOtpValid) === String(otp)){
+            AxiosClient.post(`/api/v1/handels?iduser=${userData.id}&mailpersonundersurveillance=${contactEmail}`)
+            .then(res => {
+                console.log(contactEmail)
+                console.log(res)
+                console.log("ok")
+                toast.success("Giám sát thành công!", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                  });
+            })
+            .catch(error => console.log(error))
+        }
+    }
+    console.log(newPassword)
+    console.log(repeatPassword)
+    // // Mock API functions (replace with your actual API calls)
+    // const requestOtp = async (email) => {
+    //     const response = await fetch(`/api/v1/requestuser?email=${email}`);
+    //     return response.json();
+    // };
+
+    // const checkOtpValidity = async (email, enteredOtp) => {
+    //     const response = await fetch(`/api/v1/checkotp?Email=${email}&EnteredOtp=${enteredOtp}`);
+    //     return response.json();
+    // };
+
+    // const saveToDatabase = async (email) => {
+    //     const response = await fetch(`/api/v1/handels?mail=${email}`);
+    //     return response.json();
+    // };
+
+    // const fetchMonitoredEmails = async () => {
+    //     const response = await fetch(`/api/v1/showview`);
+    //     return response.json();
+    // };
+    const handleChangePassword = async() =>{
+        if (newPassword !== repeatPassword) {
+            // Hiển thị thông báo lỗi
+            toast.error("Mật khẩu mới và mật khẩu lặp lại không khớp!", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+            });
+            return; // Dừng lại nếu có lỗi
+          }
+        try {
+            const response = await AxiosClient.get(
+              `/register/updatepass?iduser=${userData.id}&changeepass=${newPassword}`
+            );
+            console.log(response.data);
+            // Xử lý logic sau khi thay đổi mật khẩu thành công
+            toast.success("Mật khẩu đã được thay đổi thành công!", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+            });
+          } catch (error) {
+            console.error(error);
+            // Xử lý logic khi có lỗi xảy ra
+            toast.error("Đã xảy ra lỗi khi thay đổi mật khẩu!", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+            });
+          }
+    }
     return (
-        <div class="container light-style flex-grow-1 container-p-y">
+        <div class="container-fluid light-style flex-grow-1 container-p-y" id='id-account'>
             <h4 class="font-weight-bold py-3 mb-4">
                 Account settings
             </h4>
@@ -33,11 +134,14 @@ function Profile() {
                                 data-toggle="list"
                                 href="#account-info"
                                 onClick={() => handleTabChange('#account-info')}>Info</a>
-                            <a className={`list-group-item list-group-item-action ${activeTab === '#account-notifications' ? 'active' : ''}`}
+                            {/* <a className={`list-group-item list-group-item-action ${activeTab === '#account-notifications' ? 'active' : ''}`}
                                 data-toggle="list"
                                 href="#account-notifications"
-                                onClick={() => handleTabChange('#account-notifications')}>Notifications</a>
-
+                                onClick={() => handleTabChange('#account-notifications')}>Notifications</a> */}
+                            <a className={`list-group-item list-group-item-action ${activeTab === '#account-notifications' ? 'active' : ''}`}
+                                data-toggle="list"
+                                href="#account-dashborad"
+                                onClick={() => handleTabChange('#account-dashborad')}>Dashboard</a>
                         </div>
                     </div>
 
@@ -83,14 +187,14 @@ function Profile() {
                                 <div class="card-body pb-2">
                                     <div class="form-group">
                                         <label class="form-label">Current password</label>
-                                        <input type="password" class="form-control"></input>
+                                        <input type="password"  class="form-control"></input>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">New password</label>
-                                        <input type="password" class="form-control"></input>
+                                        <input type="password" class="form-control" onChange={(e) => setNewPassword(e.target.value)}></input>
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label">Repeat new password</label>
+                                        <label class="form-label" onChange={(e) => setRepeatPassword(e.target.value)}>Repeat new password</label>
                                         <input type="password" class="form-control"></input>
                                     </div>
                                 </div>
@@ -123,89 +227,42 @@ function Profile() {
                                 <div class="card-body pb-2">
                                     <h6 class="mb-4">Contacts</h6>
                                     <div class="form-group">
-                                        <label class="form-label">Phone</label>
-                                        <input type="text" class="form-control" value="(+84)"></input>
+                                        <label class="form-label">Email</label>
+                                       <input
+                                            type="text"
+                                            className="form-control"
+                                            name='email'
+                                            value={contactEmail}
+                                            onChange={(e) => setContactEmail(e.target.value)}
+                                        />
+                                    </div>
+                                    <div>
+                                        <button onClick={handleSend}>Send</button>
+                                    </div>
+                                     <div class="form-group">
+                                        <label class="form-label">OTP</label>
+                                       <input
+                                            type="text"
+                                            className="form-control"
+                                            name='otp'
+                                            value={isOtpValid}
+                                            onChange={(e) => setIsOtpValid(e.target.value)}
+                                        />
+                                    </div>
+                                    <div>
+                                        <button onClick={checkValidOtp}>Send</button>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class={`tab-pane fade ${activeTab === '#account-notifications' ? 'show active' : ''}`} id="account-notifications">
-                                <div class="card-body pb-2">
-                                    <h6 class="mb-4">Activity</h6>
-                                    <div class="form-group">
-                                        <label class="switcher">
-                                            <input type="checkbox" class="switcher-input" checked></input>
-                                            <span class="switcher-indicator">
-                                                <span class="switcher-yes"></span>
-                                                <span class="switcher-no"></span>
-                                            </span>
-                                            <span class="switcher-label">Email me when someone comments on my article</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="switcher">
-                                            <input type="checkbox" class="switcher-input" checked></input>
-                                            <span class="switcher-indicator">
-                                                <span class="switcher-yes"></span>
-                                                <span class="switcher-no"></span>
-                                            </span>
-                                            <span class="switcher-label">Email me when someone answers on my forum
-                                                thread</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="switcher">
-                                            <input type="checkbox" class="switcher-input"></input>
-                                            <span class="switcher-indicator">
-                                                <span class="switcher-yes"></span>
-                                                <span class="switcher-no"></span>
-                                            </span>
-                                            <span class="switcher-label">Email me when someone follows me</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <hr class="border-light m-0"></hr>
-                                <div class="card-body pb-2">
-                                    <h6 class="mb-4">Application</h6>
-                                    <div class="form-group">
-                                        <label class="switcher">
-                                            <input type="checkbox" class="switcher-input" checked></input>
-                                            <span class="switcher-indicator">
-                                                <span class="switcher-yes"></span>
-                                                <span class="switcher-no"></span>
-                                            </span>
-                                            <span class="switcher-label">News and announcements</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="switcher">
-                                            <input type="checkbox" class="switcher-input"></input>
-                                            <span class="switcher-indicator">
-                                                <span class="switcher-yes"></span>
-                                                <span class="switcher-no"></span>
-                                            </span>
-                                            <span class="switcher-label">Weekly product updates</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="switcher">
-                                            <input type="checkbox" class="switcher-input" checked></input>
-                                            <span class="switcher-indicator">
-                                                <span class="switcher-yes"></span>
-                                                <span class="switcher-no"></span>
-                                            </span>
-                                            <span class="switcher-label">Weekly blog digest</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
+                
 
                         </div>
                     </div>
                 </div>
             </div>
             <div class="text-right mt-3">
-                <button type="button" class="btn btn-primary">Save changes</button>&nbsp;
+                <button type="button" class="btn btn-primary" onClick={handleChangePassword}>Save changes</button>&nbsp;
                 <button type="button" class="btn btn-default">Cancel</button>
             </div>
         </div>

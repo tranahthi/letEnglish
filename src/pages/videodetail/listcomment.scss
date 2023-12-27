@@ -1,0 +1,45 @@
+
+
+.list-comment{
+    margin-bottom: 20px;
+
+    
+
+
+
+    .infor-user-comment{
+        display: flex;
+
+        .img-user-comment{
+
+
+            .img-user{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+            }
+        }
+
+
+        .body-user-comment{
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    .value-comment{
+        margin-left: 60px;
+        font-size: 20px;
+        font-weight: 500;
+
+        p{
+            margin-bottom: 0;
+        }
+        .reply{
+           
+            color: #69B4F9;
+            text-decoration: none;
+            
+        }
+    }
+}

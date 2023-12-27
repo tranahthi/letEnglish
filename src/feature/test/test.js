@@ -1,110 +1,51 @@
-// {/* <div className="one-chanel ">
-//                             <a className="title" href="">
-//                                 <h6 data-title >bussiness & finance</h6>
-//                                 <img src="https://vt-cdn.voicetube.com/assets/img/page/home/channels/arts-and-entertainment.jpg" alt="" />
-//                             </a>
-//                         </div>
-//                         <div className="one-chanel ">
-//                             <a className="title" href="">
-//                                 <h6 data-title >bussiness & finance</h6>
-//                                 <img src="https://vt-cdn.voicetube.com/assets/img/page/home/channels/business-and-finance.jpg" alt="" />
-//                             </a>
-//                         </div>
-//                         <div className="one-chanel  ">
-//                             <a className="title" href="">
-//                                 <h6 data-title >bussiness & finance</h6>
-//                                 <img src="https://vt-cdn.voicetube.com/assets/img/page/home/channels/learning.jpg" alt="" />
-//                             </a>
-//                         </div>
-//                         <div className="one-chanel  ">
-//                             <a className="title" href="">
-//                                 <h6 data-title >bussiness & finance</h6>
-//                                 <img src="https://vt-cdn.voicetube.com/assets/img/page/home/channels/music.jpg" alt="" />
-//                             </a>
-//                         </div>
+import React, { useEffect, useRef, useState } from 'react';
 
-//                         <div className="one-chanel ">
-//                             <a className="title" href="">
-//                                 <h6 data-title >bussiness & finance</h6>
-//                                 <img src="https://vt-cdn.voicetube.com/assets/img/page/home/channels/business-and-finance.jpg" alt="" />
-//                             </a>
-//                         </div> */}
+const Test = () => {
+    const videoRef = useRef(null);
+    const [subtitles, setSubtitles] = useState('');
+    const [listening, setListening] = useState(false);
 
+    const handleStartListening = () => {
+        setListening(true);
+        const recognition = new window.SpeechRecognition();
 
+        recognition.lang = 'en-US';
 
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript;
+            setSubtitles(transcript);
+        };
 
-//                         <div className="container-content ">
-//                             <div className="content-img">
-//                                 <img src="/assets/image/anhtesst.jpg" alt="" />
-//                             </div>
-//                             <div className="content-title">
-//                                 <a href="">New York vs. Tokyo’s Subway: How Japan Got So Far Ahead | WSJ U.S. vs. Japan</a>
-//                                 <hr className="line"></hr>
+        recognition.onend = () => {
+            setListening(false);
+        };
 
-//                                 <div className="view-count">
-//                                     <img src="/assets/icon/iconlisten.svg" alt="" />
-//                                     <span>10</span>
-//                                 </div>
+        recognition.start();
+    };
 
-//                             </div>
-//                         </div>
-//                         <div className="container-content ">
-//                             <div className="content-img">
-//                                 <img src="/assets/image/test2.jpg" alt="" />
-//                             </div>
-//                             <div className="content-title">
-//                                 <a href="">New York vs. Tokyo’s Subway: How Japan Got So Far Ahead | WSJ U.S. vs. Japan</a>
-//                                 <hr className="line"></hr>
+    useEffect(() => {
+        // Gọi hàm khi component đã mount
+        handleStartListening();
 
-//                                 <div className="view-count">
-//                                     <img src="/assets/icon/iconlisten.svg" alt="" />
-//                                     <span>10</span>
-//                                 </div>
+        // Làm sạch trình dọn sau khi component unmount (componentWillUnmount)
+        return () => {
+            const recognition = new window.SpeechRecognition();
+            recognition.abort();
+        };
+    }, []); // Dependency array rỗng để đảm bảo chỉ chạy một lần khi component được mount
 
-//                             </div>
-//                         </div>
-//                         <div className="container-content ">
-//                             <div className="content-img">
-//                                 <img src="/assets/image/test3.jpg" alt="" />
-//                             </div>
-//                             <div className="content-title">
-//                                 <a href="">New York vs. Tokyo’s Subway: How Japan Got So Far Ahead | WSJ U.S. vs. Japan</a>
-//                                 <hr className="line"></hr>
+    return (
+        <div>
+            <video ref={videoRef} controls />
+            <button onClick={handleStartListening} disabled={listening}>
+                {listening ? 'Listening...' : 'Start Listening'}
+            </button>
+            <div>
+                <h3>Subtitles</h3>
+                <p>{subtitles}</p>
+            </div>
+        </div>
+    );
+};
 
-//                                 <div className="view-count">
-//                                     <img src="/assets/icon/iconlisten.svg" alt="" />
-//                                     <span>10</span>
-//                                 </div>
-
-//                             </div>
-//                         </div>
-//                         <div className="container-content ">
-//                             <div className="content-img">
-//                                 <img src="/assets/image/anhtesst.jpg" alt="" />
-//                             </div>
-//                             <div className="content-title">
-//                                 <a href="">New York vs. Tokyo’s Subway: How Japan Got So Far Ahead | WSJ U.S. vs. Japan</a>
-//                                 <hr className="line"></hr>
-
-//                                 <div className="view-count">
-//                                     <img src="/assets/icon/iconlisten.svg" alt="" />
-//                                     <span>10</span>
-//                                 </div>
-
-//                             </div>
-//                         </div>
-//                         <div className="container-content ">
-//                             <div className="content-img">
-//                                 <img src="/assets/image/anhtesst.jpg" alt="" />
-//                             </div>
-//                             <div className="content-title">
-//                                 <a href="">New York vs. Tokyo’s Subway: How Japan Got So Far Ahead | WSJ U.S. vs. Japan</a>
-//                                 <hr className="line"></hr>
-
-//                                 <div className="view-count">
-//                                     <img src="/assets/icon/iconlisten.svg" alt="" />
-//                                     <span>10</span>
-//                                 </div>
-
-//                             </div>
-//                         </div>
+export default Test;

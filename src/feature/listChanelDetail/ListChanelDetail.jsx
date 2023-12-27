@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import AxiosClient from "../../api/AxiosClient"
 
 function ListChanelDetail() {
 
@@ -11,7 +12,7 @@ function ListChanelDetail() {
 
         useEffect(() =>{
 
-            axios.get("http://172.20.10.8:8081/chanel/list/")
+            AxiosClient.get("/chanel/list/")
 
             .then(res =>{
                 console.log(res)
