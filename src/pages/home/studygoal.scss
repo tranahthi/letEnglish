@@ -1,0 +1,62 @@
+#div-choose-word {
+
+
+    .tag-amount-word{
+
+        .tag{
+            font-size: 20px;
+            text-align: center;
+            font-weight: 700;
+        }
+    }
+    .top-choose-word {
+      display: flex;
+      margin-top: 10px;
+      justify-content: space-between;
+  
+      .title-choose {
+        font-size: 20px;
+        font-weight: 700;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+      }
+  
+      .choose-word {
+        background-color: #dae7f4;
+        border: none; /* Loại bỏ đường viền */
+        cursor: pointer; /* Biến con trỏ thành "bàn tay" khi di chuột qua */
+        padding: 10px;
+        border-radius: 5px; /* Bo tròn góc */
+        transition: background-color 0.3s; /* Hiệu ứng chuyển đổi màu nền */
+      }
+  
+      .choose-word:hover {
+        background-color: #abc3e8; /* Màu nền khi di chuột qua */
+      }
+    }
+  
+    .selected-number-display {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 25vh;
+      font-size: 50px; /* Cỡ chữ */
+    }
+  
+    .tag-amount-word {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .button-group {
+        button {
+          width: 100px !important;
+          padding: 30px !important;
+          margin: 0 !important; // Thêm margin: 0 để loại bỏ margin mặc định
+        }
+      }
+  }
+  

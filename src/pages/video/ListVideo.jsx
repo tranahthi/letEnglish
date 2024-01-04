@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import ListChanel from "../../feature/listchanel/ListChanel";
 import AxiosClient from "../../api/AxiosClient";
 import WatchedVideo from "./WatchedVideo";
+import DisplayListVideo from "./DisplayListVideo";
 
 function ListVideo() {
   const [activeTab, setActiveTab] = useState("All");
@@ -22,7 +23,7 @@ function ListVideo() {
   };
 
   const handleSaveClick = () => {
-    // Handle save click
+    // Handle save click video
   };
 
   const handleTabClick = (tab) => {
@@ -90,7 +91,7 @@ function ListVideo() {
           {filteredChannels.map((channel, index) => (
             <LazyLoad key={channel.id} height={100} offset={50}>
               <div key={channel.id} className="content__video--middle--middle">
-                <div
+              <div
                   className="content__video--middle-fix"
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
@@ -116,58 +117,14 @@ function ListVideo() {
                   </div>
                 </div>
 
-                <div className="display-fix">
-                  {channel.imagevideo.map((image, imageId) => (
-                    <div
-                      key={imageId}
-                      className="content__video--middle--content"
-                      onClick={() => fixLink(channel.idvideo[imageId])}
-                      onMouseEnter={() => handleMouseEnter(channel.idvideo[imageId])}
-                      onMouseLeave={handleMouseLeave}
-                    >
-                      {isHovered === channel.idvideo[imageId] && (
-                        <div className="favorite-icon" onClick={handleSaveClick}>
-                          <img
-                            width={30}
-                            height={30}
-                            src="/assets/icon/iconheart.svg"
-                            alt="Save"
-                          />
-                        </div>
-                      )}
-                      <div className="container-content">
-                        <div className="content-img">
-                          <img
-                            src={image}
-                            alt=""
-                            loading="lazy"
-                            decoding="async"
-                          />
-                        </div>
-                        <div className="content-title">
-                          <h3 className="link-to-a">
-                            <Link
-                              className="a"
-                              to={`/chanel/list/${channel.idvideo[imageId]}`}
-                            >
-                              {channel.namevideo[imageId]}
-                            </Link>
-                          </h3>
-                          <hr className="line"></hr>
-                          <div className="view-count-line-fix">
-                            <div className="view-count">
-                              <img
-                                src="/assets/icon/iconlisten.svg"
-                                alt=""
-                              />
-                              <span>{channel.numhumanwatched[imageId]}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+              <DisplayListVideo
+                  channel={channel}
+                  isHovered={isHovered}
+                  handleMouseEnter={handleMouseEnter}
+                  handleMouseLeave={handleMouseLeave}
+                  fixLink={fixLink}
+                  handleSaveClick={handleSaveClick}
+              />
               </div>
             </LazyLoad>
           ))}

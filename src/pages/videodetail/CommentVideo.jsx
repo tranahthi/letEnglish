@@ -1,34 +1,32 @@
+// CommentVideo.js
 import AxiosClient from "../../api/AxiosClient";
 import "./comment.scss";
 import { useState } from "react";
 
 const CommentVideo = (props) => {
- 
   const [newComment, setNewComment] = useState("");
-  const {idUser , idVideo ,userName, onAddComment ,comments} = props
-  console.log(userName)
-
-
+  const { idUser, idVideo, userName, onAddComment, comments } = props;
 
   const handleCommentChange = (event) => {
     setNewComment(event.target.value);
   };
 
-  const handleAddComment =  () => {
+  const handleAddComment = () => {
+
     if (newComment.trim() !== "") {
-      AxiosClient.post(`/api/v1/comment?mess=${newComment}&iduser=${idUser}&idvideo=${idVideo}&namecomment=${userName}`)
-      .then(res =>{
-        console.log(res)
-        setNewComment("")
-        onAddComment(res.data);
+      AxiosClient.post(`/api/v1/comment?mess=${newComment}&iduser=${idUser}&idvideo=${idVideo}&namecomment=${userName}&logcomment=${new Date()}`)
+        .then(res => {
+          console.log(res);
+          setNewComment("");
 
-        // const newComment = {
-        //   idcomment:
-        // }
-
-      })
-      .catch((error) => console.log(error))
-     
+          const newComment = {
+            contextcomment: res.data.mess,
+            namecomment: userName,
+            timestamp: res.data.logcomment
+          };
+          onAddComment(newComment);
+        })
+        .catch(error => console.log(error));
     }
   };
 
@@ -50,7 +48,6 @@ const CommentVideo = (props) => {
       <button className="btn btn-primary" onClick={handleAddComment}>
         Add Comment
       </button>
-      
     </div>
   );
 };

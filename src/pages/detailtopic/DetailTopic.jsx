@@ -16,10 +16,10 @@ function DetailTopic() {
     // console.log(wordData);
     // console.log(currentWordIndex);
     console.log(wordData)
+    const navigate = useNavigate()
 
 
     useEffect(() => {
-        
         const storedFavoriteWords = localStorage.getItem('listWord');
         if (storedFavoriteWords) {
             setFavoriteWords(JSON.parse(storedFavoriteWords));
@@ -127,18 +127,27 @@ function DetailTopic() {
         }
     };
 
-    useEffect(() => {
-        console.log('ccc', wordData)
-        console.log('ccc1', currentWordIndex)
-        console.log('ccc2', wordData?.length -1)
-        if(wordData && currentWordIndex === wordData.length ) {
-            return alert('cc')
-        }
-    }, [currentWordIndex])
-
+  
+    const handleClose = () => {
+        navigate(`/topic`);
+    };
     return (
         <div className=" detailtopic">
+            <div className='header-detail-topic'>
+                <div className="header-content">
+                    <div className="header-left">
+                        <div className="lesson-topic-info">
+                            <a href="/">{currentTopic} - {currentLesson} </a>
+                        </div>
+                    </div>
+                    <div className="header-right">
+                        <img src="/assets/icon/iconclose.svg" alt="close" title='close' onClick={handleClose} />
+                    </div>
+                </div>
+            </div>
+
             <div className='sub-detail'>
+                
                 <div className='progress-line'>
                     <div className='lining'>
                         <div className='color' style={{ width: `${colorProgress}%` }}></div>
@@ -168,7 +177,7 @@ function DetailTopic() {
 
                             <div className="box-sound">
                                 <label htmlFor="">Sound</label>
-                                <i className="fa fa-volume-up sound-icon" onClick={handlePlayAudio}></i>
+                                <i  className="fa fa-volume-up sound-icon" onClick={handlePlayAudio}></i>
                             </div>
                         </div>
                     </div>

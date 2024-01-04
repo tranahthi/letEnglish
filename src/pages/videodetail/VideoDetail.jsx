@@ -1,7 +1,8 @@
+// VideoDetail.js
 import { useEffect, useState } from "react";
 import AxiosClient from "../../api/AxiosClient";
 import "./videodetail.scss";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import CommentVideo from "./CommentVideo";
 import ListComment from "./ListComment";
 
@@ -12,18 +13,17 @@ function VideoDetail() {
   const [comments, setComments] = useState([]);
   let { videoId } = useParams();
   let userData = localStorage.getItem("userData");
-
+console.log(comments)
   if (userData) {
     userData = JSON.parse(userData);
   }
 
   const handleCommentAdded = (newComment) => {
     setComments([...comments, newComment]);
-    console.log(newComment)
+    console.log(newComment);
   };
 
   useEffect(() => {
-    console.log(videoId)
     AxiosClient.get(`/chanel/list/${videoId}`)
       .then((res) => {
         const videos = res.data.listvideoofTopic.videos;
@@ -35,19 +35,13 @@ function VideoDetail() {
       })
       .catch((error) => console.log(error));
   }, [videoId]);
-  
 
   const handleVideoClick = (video) => {
-    // Set the selected video to be displayed
     setVideo(video);
-    
-    // Update the URL to match the selected video
     navigate(`/chanel/list/${video.idvideo}`);
-    window.location.reload(); // reload trang
   };
 
   function renderData() {
-    console.log(getVideo)
     if (getVideo && Object.keys(getVideo).length > 0) {
       return (
         <div>
@@ -88,6 +82,12 @@ function VideoDetail() {
   return (
     <div className="container" id="videodetail">
       <div className="row">
+        <Link to="/listvideo" className="back">
+          <button className="back-button" >
+            <img width={30} height={30} src="/assets/icon/iconback.svg" alt="" />
+            Back to list 
+          </button>
+        </Link>
         <div className="content__detail--left col-sm-8">{renderData()}</div>
         <div className="content__detail--right col-sm-4">
           <h3>Watch next</h3>

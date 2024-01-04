@@ -10,9 +10,9 @@ const Topic = () => {
   const [currentTopic, setCurrentTopic] = useState("");
   const [currentLesson, setCurrentLesson] = useState("");
   const [getTopic, setTopic] = useState([]);
-  console.log(getTopic)
-  console.log(currentTopic)
-  localStorage.setItem("nameTopic" , JSON.stringify(currentTopic))
+  // const [learningTopic, setLearningTopic] = useState(null);
+  // const [learningLesson,setLearningLesson] = useState(null)
+
   useEffect(() => {
     const fetchTopicData = async () => {
       try {
@@ -34,8 +34,21 @@ const Topic = () => {
     setShowModal(true);
     setCurrentTopic(topic);
     setCurrentLesson(lesson);
+    // setLearningTopic(topic); // Set the current topic when a card is clicked
+    // setLearningLesson(lesson);
     handleStartClick(wordId);
   };
+
+  // const handleContinueLearning = () => {
+  //   // Add logic to continue learning the current topic
+  //   // For example, redirect to the detail page or handle it in your app's logic
+  //   if (learningTopic && learningLesson) {
+  //     // Add logic to continue learning the current topic and lesson
+  //     console.log("Continue learning:", learningTopic, learningLesson);
+  //     navigate(`/detailtopic/${learningTopic}/${learningLesson}`);
+  //   }
+  //   console.log("Continue learning:", currentTopic);
+  // };
 
   const renderData = useMemo(() => {
     if (Array.isArray(getTopic) && getTopic.length > 0) {
@@ -57,6 +70,27 @@ const Topic = () => {
     }
     return <p>No topics available.</p>;
   }, [getTopic]);
+
+  const renderContinueLearning = () => {
+    return (
+      <div>
+        <h3 className="text-continue-learning">Continue Learning</h3>
+        <div className="continue-learning">
+          <div className="learning-topic">
+            <span>abc</span>
+            <button className="btn btn-secondary">
+              Continue
+            </button>
+          </div>
+          {/* <div className="topic-image">
+            <img src="/assets/image/anhtesst.jpg" alt="Topic" />
+          </div> */}
+        </div>
+      </div>
+    );
+  };
+  
+  
 
   const renderVocabularyModal = useMemo(() => {
     if (Array.isArray(getTopic) && getTopic.length > 0) {
@@ -114,18 +148,21 @@ const Topic = () => {
   return (
     <div className="container topic">
       <div className="main_content">
+        {renderContinueLearning ()}
+
+        <h3 className='text-next'>Next</h3>
         <div className="topic-list">
           {renderData}
         </div>
         <Modal show={showModal} onHide={handleCloseModal} centered>
-          <Modal.Header closeButton>
+          <Modal.Header closeButton style={{border:"none"}}>
             <Modal.Title className="modal-name-topic" style={{ color: "#69B4F9" }}>{currentTopic}</Modal.Title>
           </Modal.Header>
           <Modal.Body style={{ maxHeight: "450px", overflowY: "auto ", overflowX: "hidden" }} className='modal-body' >
             {renderVocabularyModal}
           </Modal.Body>
-          <Modal.Footer>
-            <Link to={`/detailtopic/${currentTopic}/${currentLesson}`} className="btn btn-secondary" style={{ margin: "auto ", backgroundColor: "#69B4F9", border: "none", width: "150px", height: "40px" }} onClick={handleStartClick}>
+          <Modal.Footer style={{border:"none"}}>
+            <Link to={`/detailtopic/${currentTopic}/${currentLesson}`} className="btn btn-secondary" style={{ margin: "auto ",padding:"10px" ,backgroundColor: "#69B4F9", border: "none",borderRadius:"30px", width: "150px", height: "40px" }} onClick={handleStartClick}>
               Start
             </Link>
           </Modal.Footer>

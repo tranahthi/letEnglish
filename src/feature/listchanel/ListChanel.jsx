@@ -20,8 +20,6 @@ function ListChanel() {
     return (
         <div className="content__video--middle--bottom">
             {getChanel.map((value, index) => (
-                
-
                 <div className="one-chanel" key={index}>
                     <a className="title" href={`/chanel/list/detail/${value.idchanel}`}>
                         <h6 data-title>{value.namechanel}</h6>

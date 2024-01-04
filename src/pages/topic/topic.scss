@@ -1,6 +1,6 @@
 /* Tăng cường quy tắc selector */
 .topic {
-  margin-top: 100px;
+  margin-top: 120px;
 
   .btn-group .btn-primary {
     font-size: 20px;
@@ -13,20 +13,71 @@
   }
 
   .main_content {
+
+
+    .text-next{
+      margin-top :20px;
+      font-size: 30px;
+      font-weight: 700;
+    }
+    
     .modal-body {
       max-height: 400px;
       overflow-y: auto;
       overflow-x: hidden;
     }
-
+    .text-continue-learning  {
+      font-size: 30px;
+      font-weight: 700;
+      /* Chỉnh font weight */
+    }
     .continue-learning {
+      position: relative;
       margin-top: 20px;
+      padding: 10px;
+      width: 400px;
+      
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-      .text-continue-learning {
-        font-size: 24px;
-        font-weight: 700;
-        /* Chỉnh font weight */
+      
+      .learning-topic {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        align-items: flex-start; /* Align items to the start */
+      
+        span {
+          font-size: 16px;
+          margin-bottom: 5px; /* Adjust margin */
+        }
+
+        button {
+          margin-top: 5px; /* Add margin to separate from the span */
+          padding: 8px 16px;
+          font-size: 14px;
+          background-color: #69B4F9;
+          color: #fff;
+          border: none;
+          border-radius: 3px;
+          cursor: pointer;
+        }
       }
+
+      // .topic-image {
+      //   position: absolute;
+      //   bottom: 0;
+      //   left: 0;
+      //   width: 100%;
+      //   z-index: 1000; /* Ensure the image is behind the buttons */
+
+
+      // }
+      // .topic-image img {
+      //   width: 100%;
+      //   height: 50px; /* Maintain aspect ratio */
+      // }
     }
 
     .card {
@@ -36,6 +87,8 @@
       margin-right: 20px;
       margin-top: 20px;
       cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease-in-out;
 
 
       .card-img-top{
@@ -49,12 +102,21 @@
         padding: 0;
       }
     }
+    .card:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
 
     .topic-list {
       margin-top: 20px;
 
       .topic-item {
         margin-top: 20px;
+
+
+        .topic-name{
+          font-weight: 700;
+          font-size: 22px;
+        }
       }
     }
   }
@@ -85,3 +147,14 @@
   color: rgb(142, 148, 160)
   ;
 }
+
+// .modal {
+//   opacity: 0;
+//   transform: scale(0.8);
+//   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+//   &.show {
+//     opacity: 1;
+//     transform: scale(1);
+//   }
+// }

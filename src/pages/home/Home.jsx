@@ -2,33 +2,35 @@ import { useEffect, useState } from "react"
 import DataPicker from "./DataPicker"
 import "./home.scss"
 import AxiosClient from "../../api/AxiosClient"
+import StudyGoals from "./StudyGoals"
 
 
 
 function Home(props) {
 
-
+    const [learnedWord , setLearnedWord] = useState("")
+    const [savedWord , setSavedWord] = useState([])
+    const [getTotalDay,setTotalDay] = useState("")
+        console.log(savedWord)
+        console.log(learnedWord)
     let userData = localStorage.getItem('userData');
     if (userData) {
         userData = JSON.parse(userData);
     }
 
 
-    const [learnedWord , setLearnedWord] = useState([])
-    const [savedWord , setSavedWord] = useState([[]])
-console.log(savedWord)
-console.log(learnedWord)
+  
 // dang fixx khuc nay chieu 25/12
     useEffect(() =>{
-        let allLearnedWords = localStorage.getItem("allLearnedWords")
-        console.log(allLearnedWords)
-        setLearnedWord(allLearnedWords[userData.id] || []);
-        // if(wordData){
-        //     wordData = JSON.parse(wordData)
-        // }
-        // setLearnedWord(wordData)
-        // console.log(wordData)
+        AxiosClient.get(`api/v1/wordslearned?iduser=${userData.id}`)
+        .then(res =>{
+            console.log(res)
+            setLearnedWord(res.data)
+        })
+        .catch(error => console.log(error))
         getSaved()
+        getTotal()
+      
     },[userData.id])
 
 
@@ -40,6 +42,19 @@ console.log(learnedWord)
         })
         .catch(error => console.log(error))
     }
+
+    // http://192.168.1.13:8081/api/v1/sumtimelog?iduser=1
+   const getTotal = () =>{
+
+    AxiosClient.post(`/api/v1/sumtimelog?iduser=${userData.id}`)
+    .then(res =>{
+        console.log(res)
+        setTotalDay(res.data)
+    })
+    .catch(error => console.log(error))
+
+   }
+   
     return (
         <>
 
@@ -63,7 +78,7 @@ console.log(learnedWord)
                                         <p >Learned words</p>
                                     </div>
                                     <div className="content__home--middle--bottom">
-                                        <p>{learnedWord.length}</p>
+                                        <p>{learnedWord}</p>
                                     </div>
                                 </div>
                                 <div className="content__home--middle col-3">
@@ -116,9 +131,8 @@ console.log(learnedWord)
                                 <div className="word-diff-practice">
                                     <div className="word-diff">
                                         <div className="sub-word">
-                                            <h5>5</h5>
+                                            <h5>0</h5>
                                             <span style={{padding:"10px"}}> Từ khó</span>
-                                        
                                         </div>
 
                                     </div>
@@ -128,9 +142,7 @@ console.log(learnedWord)
                             </div>
 
                         </div>
-                        <div className=" col-md-4 content__middle" >
-
-                        </div>
+                        <StudyGoals/>
                         <div className="col-md-4 content__right">
                             <div className="container">
                                 <div className="content__right--title">
@@ -143,7 +155,7 @@ console.log(learnedWord)
                                         Longest
                                     </p>
                                     <div className="span-time">
-                                        <span>0 day</span>
+                                        <span>{getTotalDay}</span>
                                         <div className="time"></div>
                                     </div>
 

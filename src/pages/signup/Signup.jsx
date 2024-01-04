@@ -73,9 +73,17 @@ function Signup() {
             handleRegister()
         }
     }
+    // let date = new Date()
+    // console.log(date)
+  
 
     function handleRegister() {
-        AxiosClient.get(`/register/addAcount?Username=${getInput.username}&Bcryptpassword=${getInput.password}&Email=${getInput.email}`)
+        // const date = new Date();
+
+        // // Chuyển đổi sang múi giờ địa phương
+        // const formattedDate = date.toISOString().slice(0, 19).replace("T", " ");
+    
+        AxiosClient.get(`/register/addAcount?Username=${getInput.username}&Bcryptpassword=${getInput.password}&Email=${getInput.email}&timeregister=${new Date()}`)
             .then(res => {
                 console.log(res)
                 if (res.status === 200) {

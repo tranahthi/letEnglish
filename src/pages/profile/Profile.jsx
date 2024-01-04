@@ -1,4 +1,5 @@
 import AxiosClient from '../../api/AxiosClient';
+import Dasboard from './Dasboard';
 import './profile.scss';
 import React, { useState } from 'react';
 import { ToastContainer, toast } from "react-toastify";
@@ -8,6 +9,9 @@ function Profile() {
     const [getInput , setInput] = useState("")
 
     let userData = localStorage.getItem("userData")
+    if(userData){
+        userData = JSON.parse(userData)
+    }
     const handleTabChange = (tabId) => {
         setActiveTab(tabId);
     };
@@ -15,12 +19,10 @@ function Profile() {
     const [contactEmail, setContactEmail] = useState("");
     const [otp, setOtp] = useState("");
     const [isOtpValid, setIsOtpValid] = useState("");
-
     const [newPassword,setNewPassword] = useState("")
     const [repeatPassword, setRepeatPassword] = useState("");
     console.log(otp)
-    
-    const handleSend = async () => {
+    const handleSend =  () => {
        AxiosClient.post(`/api/v1/requestuser?email=${contactEmail}`)
        .then(res => {
         console.log(res)
@@ -30,50 +32,35 @@ function Profile() {
     };
     console.log(isOtpValid)
     const checkValidOtp =  () =>{
-        if(String(isOtpValid) === String(otp)){
+        console.log(userData.id)
+        console.log(contactEmail)
+        const trimmedOtp = String(otp).trim();
+        const trimmedIsOtpValid = String(isOtpValid).trim();
+        if(trimmedIsOtpValid === trimmedOtp){
             AxiosClient.post(`/api/v1/handels?iduser=${userData.id}&mailpersonundersurveillance=${contactEmail}`)
             .then(res => {
                 console.log(contactEmail)
                 console.log(res)
                 console.log("ok")
-                toast.success("Giám sát thành công!", {
-                    position: "top-right",
-                    autoClose: 3000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                  });
+                // toast.success("Giám sát thành công!", {
+                //     position: "top-right",
+                //     autoClose: 3000,
+                //     hideProgressBar: true,
+                //     closeOnClick: true,
+                //     pauseOnHover: true,
+                //     draggable: true,
+                //   });
             })
             .catch(error => console.log(error))
         }
     }
     console.log(newPassword)
     console.log(repeatPassword)
-    // // Mock API functions (replace with your actual API calls)
-    // const requestOtp = async (email) => {
-    //     const response = await fetch(`/api/v1/requestuser?email=${email}`);
-    //     return response.json();
-    // };
-
-    // const checkOtpValidity = async (email, enteredOtp) => {
-    //     const response = await fetch(`/api/v1/checkotp?Email=${email}&EnteredOtp=${enteredOtp}`);
-    //     return response.json();
-    // };
-
-    // const saveToDatabase = async (email) => {
-    //     const response = await fetch(`/api/v1/handels?mail=${email}`);
-    //     return response.json();
-    // };
-
-    // const fetchMonitoredEmails = async () => {
-    //     const response = await fetch(`/api/v1/showview`);
-    //     return response.json();
-    // };
+ 
     const handleChangePassword = async() =>{
         if (newPassword !== repeatPassword) {
             // Hiển thị thông báo lỗi
-            toast.error("Mật khẩu mới và mật khẩu lặp lại không khớp!", {
+            toast.error("New password and repeat password do not match!", {
               position: "top-right",
               autoClose: 3000,
               hideProgressBar: true,
@@ -89,7 +76,7 @@ function Profile() {
             );
             console.log(response.data);
             // Xử lý logic sau khi thay đổi mật khẩu thành công
-            toast.success("Mật khẩu đã được thay đổi thành công!", {
+            toast.success("Password was successfully changed!", {
               position: "top-right",
               autoClose: 3000,
               hideProgressBar: true,
@@ -110,6 +97,12 @@ function Profile() {
             });
           }
     }
+
+
+    
+
+
+
     return (
         <div class="container-fluid light-style flex-grow-1 container-p-y" id='id-account'>
             <h4 class="font-weight-bold py-3 mb-4">
@@ -194,38 +187,16 @@ function Profile() {
                                         <input type="password" class="form-control" onChange={(e) => setNewPassword(e.target.value)}></input>
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label" onChange={(e) => setRepeatPassword(e.target.value)}>Repeat new password</label>
-                                        <input type="password" class="form-control"></input>
+                                        <label class="form-label" >Repeat new password</label>
+                                        <input type="password" class="form-control" onChange={(e) => setRepeatPassword(e.target.value)}></input>
                                     </div>
                                 </div>
                             </div>
 
                             <div class={`tab-pane fade ${activeTab === '#account-info' ? 'show active' : ''}`} id="account-info">
+                       
                                 <div class="card-body pb-2">
-                                    <div class="form-group">
-                                        <label class="form-label">Bio</label>
-                                        <textarea class="form-control"
-                                            rows="5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nunc arcu, dignissim sit amet sollicitudin iaculis, vehicula id urna. Sed luctus urna nunc. Donec fermentum, magna sit amet rutrum pretium, turpis dolor molestie diam, ut lacinia diam risus eleifend sapien. Curabitur ac nibh nulla. Maecenas nec augue placerat, viverra tellus non, pulvinar risus.</textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Birthday</label>
-                                        <input type="text" class="form-control" value="Jan 1, 2001"></input>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Country</label>
-                                        <select class="custom-select">
-                                            <option>USA</option>
-                                            <option selected>Canada</option>
-                                            <option>UK</option>
-                                            <option>Germany</option>
-                                            <option>France</option>
-                                            <option selected>Vietnam</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <hr class="border-light m-0"></hr>
-                                <div class="card-body pb-2">
-                                    <h6 class="mb-4">Contacts</h6>
+                                    
                                     <div class="form-group">
                                         <label class="form-label">Email</label>
                                        <input
@@ -250,13 +221,17 @@ function Profile() {
                                         />
                                     </div>
                                     <div>
-                                        <button onClick={checkValidOtp}>Send</button>
+                                        <button onClick={checkValidOtp}>Send otp</button>
                                     </div>
                                 </div>
                             </div>
-
-                
-
+                            
+                            <div class={`tab-pane fade ${activeTab === '#account-dashborad' ? 'show active' : ''}`} id="#account-dashborad">
+                                <div class="card-body pb-2">
+                                    <Dasboard/>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>

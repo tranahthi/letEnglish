@@ -5,11 +5,11 @@ body{
 }
 #mainnav {
   background-color: #ffffff;
-  // width: 100%;
-  // display: flex;
-
-
   box-shadow: 0px 4px 4px rgba(175, 175, 175, 0.25);
+  padding: 15px 20px; 
+
+
+
 
   // height: 50px;
   img {
@@ -25,18 +25,24 @@ body{
     // gap: 100px;
   }
 
-  .nav-rigth {
-    // position: relative;
-    // right: 0;
-    margin-right: 20px;
+  .nav-left{
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
   }
+  .nav-rigth {
+    display: flex;
+    align-items: center;
+   
+  }
+ 
 
   .user-icon {
-    width: 30px;
-    /* Điều chỉnh kích thước của icon user */
-    height: 30px;
-    cursor: pointer;
-  }
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin-left: 20px; /* Add margin for spacing */
+}
 
   .dropdown-menu {
     position: absolute;
@@ -52,22 +58,41 @@ body{
   display: flex;
   justify-content: space-between;
 
+
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center; // Center the nav items horizontally.
+    width: 100%; // Occupy the full width of the container.
+  }
   .nav-link {
     font-size: 16px;
     font-weight: 700;
     margin-right: 30px;
     margin-left: 30px;
     color: #000;
+    transition: border-bottom 0.3s ease-in-out;
   }
-  .nav-link:hover{
+  // .nav-link:hover{
+  //   border-bottom: 7px solid  #69B4F9;
+  // }
+  .nav-link.active{
+    // color: #69B4F9;
     border-bottom: 7px solid  #69B4F9;
+    border-radius: 10px;
+    box-shadow:0px 4px 4px rgba(112, 112, 112, 0.25); ;
+    // background-color:#abd6fd; ;
   }
   .user-icon{
     min-width: 0px;
   }
 
+  
+
+
 
 }
+
 .user-infor{
   border-bottom: 1px solid rgb(213, 213, 213);
   padding: 10px;

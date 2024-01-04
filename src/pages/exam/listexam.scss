@@ -1,0 +1,36 @@
+.list-topic-exam {
+
+
+    margin-top: 120px; /* Giảm khoảng cách từ đỉnh trang xuống */
+    display: flex;
+    justify-content: center;
+  
+    .sub-topic-exam {
+      display: flex;
+      flex-wrap: wrap; /* Cho phép các topic xuống dòng khi không đủ không gian */
+  
+      .name-topic {
+        width: 200px; /* Điều chỉnh kích thước của hình tròn */
+        height: 200px;
+        border-radius: 50%;
+        margin: 10px; /* Tăng khoảng cách giữa các hình tròn */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #3498db; /* Màu nền */
+        color: #ffffff; /* Màu chữ */
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+  
+        &:hover {
+          transform: scale(1.1); /* Hiệu ứng khi hover */
+        }
+  
+        h3 {
+          font-size: 18px;
+          margin: 0;
+        }
+      }
+    }
+  }
+  

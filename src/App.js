@@ -24,6 +24,7 @@ import ToatMessage from './components/toat-message/ToatMessage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Test from './feature/test/Test';
+import ListExam from './pages/exam/ListExam';
 
 
 function App() {
@@ -70,8 +71,8 @@ function App() {
         <Route path="/chanel/list/detail/:channelId" element={<DetailChanel />} />
 
 
-        <Route path="/exam" element={<Exam />} />
-        
+        <Route path="/exam/:nameTopic" element={<Exam />} />
+        <Route path='/listexam' element={<ListExam/>}/>
 
         <Route path="/profile" element={<Profile />} />
         <Route path="/myprogress" element={<MyProgress />} />

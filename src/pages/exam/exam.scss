@@ -1,11 +1,157 @@
+#exam {
+    margin-top: 120px;
+    max-width: 1200px;
+    padding: 20px; 
+    background-color: #f5f5f5; 
+    border-radius: 30px;
 
 
-#exam{
-    margin-top: 100px;
 
-    .answer {
-        display: flex;
-         margin-right: 10px;
-        margin-left: 0;
+
+    .back-button {
+    margin-bottom: 20px;
+
+    button {
+      background-color: #69b4f9;
+      color: white;
+      padding: 10px 20px;
+      font-size: 20px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+        
+      img{
+        margin-right: 5px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+      &:hover {
+        background-color: #69ade9;
+      }
+    }
+  }
+
+    .clock-and-score{
+        .score-container {
+            text-align: center; 
+            margin-top: 20px; 
+            .score-value {
+                font-size: 24px; /* Adjust the font size */
+                color: #333; /* Set a darker color for the text */
+                font-weight: bold;
+            }
+        }
+        .clock{
+            display: flex;
+            margin-bottom: 77px;
+            justify-content: center;
+        }
+    }
+}
+
+.list-answer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    grid-gap: 20px 180px;
+    margin-bottom: 20px;
+   
+}
+
+.question {
+    display: flex;
+
+    .span-question {
+        margin-bottom: 20px;
+        white-space: wrap;
+    }
+
+    .amout-ques {
+        padding: 7px 10px;
+        border-radius: 100%;
+        width: 30px;
+        height: 30px;
+        color: antiquewhite;
+        background-color: black;
+
+        
+    }
+}
+
+.answer {
+    display: flex;
+    margin-right: 10px;
+    margin-left: 0;
+
+    .answer-answer {
+        padding: 10px;
+    }
+    input[type="radio"] {
+        margin-top: 10px; /* Adjust the vertical alignment */
+    }
+
+    label {
+        border: 1px solid rgb(193, 192, 192);
+        width: 100%;
+        max-width: 300px; /* Set a maximum width for the label */
+        height: 50px;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 30px;
+        line-height: 30px;
+    }
+
+    label:hover {
+        cursor: pointer;
+        border: 1px solid rgb(44, 151, 227);
+        background-color: rgb(184, 222, 249);
+    }
+
+    .selected-answer {
+        color: rgb(61, 152, 243);
+    }
+}
+
+
+
+.container-exam{
+    
+    position: relative;
+    padding: 20px;
+    background-color: #ffffff; /* Set a background color */
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+
+}
+.button-sub{
+
+    position: absolute;
+    right:0px; /* Adjust the distance from the right edge */
+    bottom: 10px;
+
+
+    .submit-exam {
+        /* Add some styling to the submit button */
+        background-color: #69B4F9;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        
+    
+        
+    
+        &:hover {
+            background-color: #69ade9;
+        }
+    
+        &:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
     }
 }
